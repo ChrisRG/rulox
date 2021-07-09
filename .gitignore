@@ -1,5 +1,8 @@
 /target
 creates/*/target
-
+node_modules
+build
+npm-debug.log
+.env
 .DS_Store
 .vscode/*
