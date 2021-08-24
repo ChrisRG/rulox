@@ -2,4 +2,5 @@
 members = [
 	"rulox-core",
 	"rulox-web",
+	"rulox-cli",
   ]

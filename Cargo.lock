@@ -48,6 +48,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "rulox-cli"
+version = "0.1.0"
+dependencies = [
+ "rulox-core",
+]
+
+[[package]]
 name = "rulox-core"
 version = "0.1.0"
 dependencies = [
