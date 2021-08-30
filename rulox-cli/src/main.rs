@@ -3,8 +3,8 @@
 // #[allow(clippy::all)]
 
 use std::process::exit;
-
-use rulox_core::rulox::Rulox;
+mod rulox;
+use rulox::Rulox;
 
 fn main() {
     let mut rulox = Rulox::new();

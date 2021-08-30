@@ -1,20 +1,19 @@
 // use super::ast;
-use super::ast::Expr::*;
-use super::ast::{BiOperator, Expr, LogicOperator, Stmt, UnOperator, Value};
-use super::environment::Environment;
-use super::function::*;
+use crate::rulox::ast::Expr::*;
+use crate::rulox::ast::{BiOperator, Expr, LogicOperator, Stmt, UnOperator, Value};
+use crate::rulox::environment::Environment;
+use crate::rulox::function::*;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::fmt;
 use std::rc::Rc;
-
 pub type EnvCell = Rc<RefCell<Environment>>;
 
 pub struct Interpreter {
     pub globals: EnvCell,
     pub environment: EnvCell,
-    locals: HashMap<Rc<str>, usize>,
-    output: Vec<String>,
+    pub locals: HashMap<Rc<str>, usize>,
+    pub output: Vec<String>,
 }
 
 impl Interpreter {

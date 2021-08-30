@@ -1,11 +1,11 @@
-mod ast;
-mod environment;
-mod function;
-mod interpreter;
-mod parser;
-mod resolver;
-mod scanner;
-mod token;
+pub mod ast;
+pub mod environment;
+pub mod function;
+pub mod interpreter;
+pub mod parser;
+pub mod resolver;
+pub mod scanner;
+pub mod token;
 
 use ast::Stmt;
 use interpreter::Interpreter;
