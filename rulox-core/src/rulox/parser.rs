@@ -322,10 +322,7 @@ impl<'a> Parser<'a> {
             Semicolon,
             String::from("Expect ';' after variable declaration."),
         );
-        Ok(Stmt::Var {
-            name,
-            initializer: initializer,
-        })
+        Ok(Stmt::Var { name, initializer })
     }
 
     fn function(&mut self, kind: &'static str) -> Result<Stmt, ParseError> {
@@ -335,17 +332,17 @@ impl<'a> Parser<'a> {
         if self.check(vec![RightParen]).is_none() {
             loop {
                 if parameters.len() > 8 {
-                    self.error(format!("Can't have more than 8 parameters"));
+                    self.error(String::from("Can't have more than 8 parameters"));
                 }
                 parameters.push(Rc::from(
-                    self.consume_identifier(format!("Expect parameter name."))?,
+                    self.consume_identifier(String::from("Expect parameter name."))?,
                 ));
                 if self.check(vec![Comma]).is_none() {
                     break;
                 }
             }
 
-            self.consume(RightParen, format!("Expect ')' after parameters."));
+            self.consume(RightParen, String::from("Expect ')' after parameters."));
         }
 
         self.consume(LeftBrace, format!("Expect {{ before {} body.", kind));
@@ -471,7 +468,7 @@ impl<'a> Parser<'a> {
             Expr::Literal(Value::Nil)
         };
 
-        self.consume(Semicolon, format!("Expect ';' after return value."));
+        self.consume(Semicolon, String::from("Expect ';' after return value."));
         Ok(Stmt::Return(val))
     }
 
@@ -495,7 +492,7 @@ impl<'a> Parser<'a> {
         if !self.is_at_end() {
             self.current += 1;
         }
-        &self.previous()
+        self.previous()
     }
 
     fn is_at_end(&mut self) -> bool {

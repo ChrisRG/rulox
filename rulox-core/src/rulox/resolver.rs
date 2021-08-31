@@ -20,7 +20,7 @@ impl<'a> Resolver<'a> {
         }
     }
 
-    pub fn resolve_source(&mut self, stmts: &Vec<Stmt>) -> Result<(), ()> {
+    pub fn resolve_source(&mut self, stmts: &[Stmt]) -> Result<(), ()> {
         for stmt in stmts {
             self.resolve_stmt(stmt.clone());
         }

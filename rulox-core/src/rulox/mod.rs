@@ -15,12 +15,12 @@ use scanner::Scanner;
 use token::Token;
 
 pub struct Rulox {
-    had_errors: bool,
+    pub had_errors: bool,
     source: String,
     environments: String,
     parse_tree: Vec<Stmt>,
     token_stream: Vec<Token>,
-    error_msg: Vec<String>,
+    pub error_msg: Vec<String>,
 }
 
 impl Rulox {
@@ -35,15 +35,14 @@ impl Rulox {
         }
     }
 
-    fn run(&mut self) -> Vec<String> {
+    pub fn run(&mut self) -> Vec<String> {
         let mut interpreter = Interpreter::new();
 
         let mut resolver = Resolver::new(&mut interpreter);
 
         let mut output = Vec::new();
-        match resolver.resolve_source(&self.parse_tree) {
-            Err(e) => output.push(format!("Resolver error: {:?}", e)),
-            _ => {}
+        if let Err(e) = resolver.resolve_source(&self.parse_tree) {
+            output.push(format!("Resolver error: {:?}", e))
         }
 
         if self.had_errors {
@@ -52,10 +51,11 @@ impl Rulox {
         }
 
         let mut result = interpreter.interpret(self.parse_tree.clone());
+        println!("{:?}", result);
         output.append(&mut result);
         self.environments = interpreter.get_environment();
 
-        if output.len() == 0 {
+        if output.is_empty() {
             output.push(String::from("No output to display."));
         }
 
@@ -66,18 +66,18 @@ impl Rulox {
         self.environments.clone()
     }
 
-    pub fn tokenize(&mut self) -> Vec<Token> {
+    pub fn tokenize(&mut self) {
         let scanner = Scanner::new(self.source.clone(), self);
-        scanner.scan_tokens()
+        self.token_stream = scanner.scan_tokens();
     }
 
-    pub fn parse(&mut self) -> Vec<Stmt> {
+    pub fn parse(&mut self) {
         let mut parser = Parser::new(self.token_stream.clone(), self);
-        parser.parse()
+        self.parse_tree = parser.parse()
     }
 
     fn error_line(&mut self, line: usize, msg: String) {
-        self.report((line, 0), "", msg);
+        self.report((line, 0), "".to_string(), msg);
     }
 
     fn error_token(
@@ -87,23 +87,14 @@ impl Rulox {
         token_col: usize,
         msg: String,
     ) {
-        self.report(
-            (token_line, token_col),
-            &format!("at '{}'", token_type),
-            msg,
-        );
+        self.report((token_line, token_col), token_type, msg);
     }
 
-    // pub fn runtime_error(&mut self, error_msg: String) {
-    //     println!("Runtime error: {}", error_msg);
-    //     self.had_errors = true;
-    // }
-
-    fn report(&mut self, pos: (usize, usize), ubi: &str, msg: String) {
+    fn report(&mut self, pos: (usize, usize), t_type: String, msg: String) {
         let (line, col) = pos;
         self.error_msg.push(format!(
-            "[Line {} Col {}] Error {}: {}",
-            line, col, ubi, msg
+            "[error @ {} : {}] \n\t --> `{}` = {}",
+            line, col, t_type, msg
         ));
         self.had_errors = true;
     }

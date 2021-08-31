@@ -44,8 +44,7 @@ impl Interpreter {
             match self.execute(&statement) {
                 Ok(_) => {}
                 Err(e) => {
-                    self.add_print_result(String::from("Runtime error."));
-                    let msg = format!("{:?}", e);
+                    let msg = format!("[Runtime error] {}", e);
                     self.add_print_result(msg);
                     break;
                 }
@@ -194,7 +193,7 @@ impl Interpreter {
             }
             Stmt::Var { name, initializer } => {
                 let value = match initializer {
-                    Some(expr) => self.evaluate(&expr)?,
+                    Some(expr) => self.evaluate(expr)?,
                     None => Value::Nil,
                 };
                 self.environment.borrow_mut().define(name.to_owned(), value);
@@ -294,10 +293,7 @@ impl Interpreter {
 }
 
 fn is_truthy(val: &Value) -> bool {
-    match val {
-        Value::Boolean(false) | Value::Nil => false,
-        _ => true,
-    }
+    !matches!(val, Value::Boolean(false) | Value::Nil)
 }
 
 // Checks whether a Value holds an actual number, which it returns unwrapped

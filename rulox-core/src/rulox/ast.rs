@@ -89,7 +89,7 @@ impl PartialEq for Value {
             (&Value::Number(left), &Value::Number(right)) => left == right,
             (&Value::Boolean(left), &Value::Boolean(right)) => left == right,
             (&Value::Nil, &Value::Nil) => true,
-            (&Value::Callable(ref left), &Value::Callable(ref right)) => Rc::ptr_eq(&left, &right),
+            (&Value::Callable(ref left), &Value::Callable(ref right)) => Rc::ptr_eq(left, right),
             _ => false,
         }
     }

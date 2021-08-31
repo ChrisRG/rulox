@@ -1,13 +1,12 @@
 #![allow(dead_code)]
 #![allow(warnings, unused)]
-// #[allow(clippy::all)]
 
 use std::process::exit;
-mod rulox;
-use rulox::Rulox;
+pub mod rulox;
+use rulox::CliRulox;
 
 fn main() {
-    let mut rulox = Rulox::new();
+    let mut clirulox = CliRulox::new();
 
     let args: Vec<String> = std::env::args().collect();
 
@@ -17,10 +16,10 @@ fn main() {
             exit(64);
         }
         len if len == 2 => {
-            rulox.run_file(&args[1]);
+            clirulox.run_file(&args[1]);
         }
         _ => {
-            rulox.run_prompt();
+            clirulox.run_prompt();
         }
     }
 }
