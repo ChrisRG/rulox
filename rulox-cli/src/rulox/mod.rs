@@ -31,8 +31,12 @@ impl CliRulox {
     pub fn run_prompt(&mut self) {
         let mut input = String::new();
 
+        println!(" -----------------------------------------------");
+        println!(" ---- Welcome to the Rulox Interpreter REPL ----");
+        println!(" ----    (use 'exit' or 'quit' to close)     ----");
+        println!(" -----------------------------------------------");
         loop {
-            print!("> ");
+            print!("rulox # ");
 
             // Need to flush stdout before reading a new line, otherwise `>` is prepended to input
             io::stdout().flush().unwrap();
@@ -68,7 +72,7 @@ impl CliRulox {
         let output = rulox.run();
 
         output.iter().for_each(|line| {
-            println!("{}", line);
+            println!("- {}", line);
         });
     }
 

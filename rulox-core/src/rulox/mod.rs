@@ -51,7 +51,6 @@ impl Rulox {
         }
 
         let mut result = interpreter.interpret(self.parse_tree.clone());
-        println!("{:?}", result);
         output.append(&mut result);
         self.environments = interpreter.get_environment();
 

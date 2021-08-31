@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(warnings, unused)]
 mod rulox;
 
 use rulox::Rulox;
