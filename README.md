@@ -13,6 +13,7 @@ Currently this project is divided into three workspaces: `rulox-core` (the core 
   *  Variables
   *  Control flow
   *  Functions
+  *  Classes
   *  Standard Library
 * Bugs / TODO
 
