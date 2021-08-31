@@ -4,7 +4,7 @@ Rulox is an imperative, dynamically typed scripting language with C-like syntax 
 Currently this project is divided into three workspaces: `rulox-core` (the core interpreter), `rulox-cli` (a command line REPL), and `rulox-web` (a WebAssembly compilation for a simple web interface).
 
 ## Contents 
-* Installation
+* [Installation](#installation)
 * Usage
   *  CLI
   *  WebAssembly
