@@ -57,10 +57,18 @@ If you already have `npm` installed, make sure that it's up to date:
 $ npm install npm@latest -g
 ```
 
-After setting up `npm`, make sure that the server dependencies are installed by running in the `rulox-web/www` directory:
+After setting up `npm`, make sure that the server dependencies are installed:
 ```
+$ cd rulox-web/www
 $ npm install
 ```
+
+To start the Rulox web server in the background, in the `rulox-web/www` directory run:
+```
+npm run start
+```
+
+Then open a Web browser and navigate to [http://localhost:8080/](http://localhost:8080/), where you will see a small code editor, a compile button, an output window, as well as several windows containing information about compiling the current code (token stream, Abstract Syntax Tree, and levels of variable scope).
 
 <br>
 
@@ -89,14 +97,6 @@ To read and execute a file:
 ```
 $ cargo run examples/fibonacci.lox
 ```
-
-#### Rulox Web
-To start the Rulox web server in the background, in the `rulox-web/www` directory run:
-```
-npm run start
-```
-
-Then open a Web browser and navigate to [http://localhost:8080/](http://localhost:8080/), where you will see a small code editor, a compile button, an output window, as well as several windows containing information about compiling the current code (token stream, Abstract Syntax Tree, and levels of variable scope).
 
 
 <br>
@@ -153,7 +153,7 @@ for (var i = 0; i <= 10; i = i + 1) {
 }
 ```
 
-There is also a rudimentary `if-else` statement. Note that there `else if` has not yet been implemented, although there is a rather ugly workaround.
+There is also a rudimentary `if-else` statement. Note that `else if` has not yet been implemented, although there is a rather ugly workaround.
 
 ```
 var x = 7;
