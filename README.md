@@ -32,6 +32,8 @@ Currently this project is divided into three workspaces: `rulox-core` (the core 
   *  [Standard Library](#standard-library)
 * [To do](#to-do)
 
+<br>
+
 ## Installation
 #### Core / Command Line Interface
 - Install Rust using the [official installation guide](https://www.rust-lang.org/learn/get-started), which will also install the `cargo` build system.
@@ -60,6 +62,7 @@ After setting up `npm`, make sure that the server dependencies are installed by 
 $ npm install
 ```
 
+<br>
 
 ## Usage
 #### CLI
@@ -94,6 +97,9 @@ npm run start
 ```
 
 Then open a Web browser and navigate to [http://localhost:8080/](http://localhost:8080/), where you will see a small code editor, a compile button, an output window, as well as several windows containing information about compiling the current code (token stream, Abstract Syntax Tree, and levels of variable scope).
+
+
+<br>
 
 ## The Rulox Language
 Rulox is an [imperative](https://en.wikipedia.org/wiki/Imperative_programming) language: it evaluates both expressions (for determining the value of data) and statements (for changing the program's state). It is also [dynamically typed](https://en.wikipedia.org/wiki/Dynamic_programming_language), meaning that the interpreter makes very few guarantees about the types assigned to different variables and the operations
@@ -217,6 +223,8 @@ While the original Lox language in _Crafting Interpreters_ has classes for basic
 
 ### Standard Library
 At the moment, the only built-in function in Rulox is `print`.
+
+<br>
 
 ## To do
 Rulox is a work in progress! Here are some of the current goals:
