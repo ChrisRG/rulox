@@ -72,7 +72,7 @@ impl CliRulox {
         let output = rulox.run();
 
         output.iter().for_each(|line| {
-            println!("- {}", line);
+            println!("{}", line);
         });
     }
 
