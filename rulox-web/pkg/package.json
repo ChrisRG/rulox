@@ -1,0 +1,13 @@
+{
+  "name": "rulox-web",
+  "version": "0.1.0",
+  "files": [
+    "rulox_web_bg.wasm",
+    "rulox_web.js",
+    "rulox_web_bg.js",
+    "rulox_web.d.ts"
+  ],
+  "module": "rulox_web.js",
+  "types": "rulox_web.d.ts",
+  "sideEffects": false
+}

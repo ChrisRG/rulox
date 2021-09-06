@@ -5,5 +5,20 @@ fun fib(n) {
 } 
 
 for (var i = 0; i <= 10; i = i + 1) { 
-  print fib(i); 
+  //print fib(i); 
 }
+
+
+fun increment(x) {
+  return x + 1;
+}
+
+fun two_times(func) {
+  fun func2(x){
+    return func (func (x));
+  }
+  return func2;
+}
+
+var two = two_times(increment)(0);
+print(two);     // Prints 2
