@@ -37,7 +37,7 @@ Currently this project is divided into three workspaces: `rulox-core` (the core 
 ## Installation
 #### Core / Command Line Interface
 - Install Rust using the [official installation guide](https://www.rust-lang.org/learn/get-started), which will also install the `cargo` build system.
-- Clone the GitHub repository and build the binary for the interpreter:
+- Clone the GitHub repository and build the binary for the interpreter (it make take a minute to finish compiling):
 
 ```
 $ git clone https://github.com/ChrisRG/rulox
@@ -49,23 +49,28 @@ The executable binary can then be found in `rulox/target/release`.
 
 #### Rulox Web
 
-To run `rulox-web` locally you'll need to download and install the JavaScript package manager [npm](https://www.npmjs.com/get-npm) in order to set up the necessary package dependencies and run a local server. 
-
-If you already have `npm` installed, make sure that it's up to date:
+To run `rulox-web` locally you'll first need to download and install [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/), for compiling Rust to WebAssembly, as well as the JavaScript package manager [npm](https://www.npmjs.com/get-npm) in order to set up the necessary package dependencies and run a local server. If you already have `npm` installed, make sure that it's up to date:
 
 ```
 $ npm install npm@latest -g
 ```
 
-After setting up `npm`, make sure that the server dependencies are installed:
+After installing both `wasm-pack` and `npm`, we'll compile the Rust code to WebAssembly. Run the following in the `rulox-web` directory, which should produce a `pkg/` subfolder:
+
 ```
-$ cd rulox-web/www
+$ wasm-pack build
+```
+
+Next download the `rulox-web` dependencies by running the following in the `rulox-web/www` directory:
+
+```
 $ npm install
 ```
 
-To start the Rulox web server in the background, in the `rulox-web/www` directory run:
+In order to start the Rulox web server in the background, while in the `rulox-web/www` directory run:
+
 ```
-npm run start
+$ npm run start
 ```
 
 Then open a Web browser and navigate to [http://localhost:8080/](http://localhost:8080/), where you will see a small code editor, a compile button, an output window, as well as several windows containing information about compiling the current code (token stream, Abstract Syntax Tree, and levels of variable scope).
@@ -88,7 +93,7 @@ $ ./target/release/rulox-cli examples/fibonacci.lox
 ```
 
 #### With `cargo`
-To run the interactive REPL from the main directory:
+To run the interactive REPL from the main directory (note that this will re-compile the project):
 ```
 $ cargo run
 ```
